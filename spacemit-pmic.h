@@ -36,4 +36,4 @@ struct spacemit_pmic {
 	struct spacemit_pmic_match_data *match_data;
 };
 
-#endif
+#endif // __SPACEMIT_PMIC_H__

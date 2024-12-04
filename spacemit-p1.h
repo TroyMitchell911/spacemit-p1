@@ -26,7 +26,6 @@ enum p1_reg {
 	P1_ID_SWITCH1,
 };
 
-/* irq description */
 enum p1_irq_line {
 	/* reg: 0x91 */
 	P1_E_GPI0,
@@ -144,57 +143,57 @@ enum p1_irq_line {
 #define P1_SW_SHUTDOWN_BIT_MSK		0x4
 #define P1_SW_RESET_BIT_MSK		0x2
 
-#define P1_E_GPI0_MSK	BIT(0)
-#define P1_E_GPI1_MSK	BIT(1)
-#define P1_E_GPI2_MSK	BIT(2)
-#define P1_E_GPI3_MSK	BIT(3)
-#define P1_E_GPI4_MSK	BIT(4)
-#define P1_E_GPI5_MSK	BIT(5)
+#define P1_E_GPI0_MSK			BIT(0)
+#define P1_E_GPI1_MSK			BIT(1)
+#define P1_E_GPI2_MSK			BIT(2)
+#define P1_E_GPI3_MSK			BIT(3)
+#define P1_E_GPI4_MSK			BIT(4)
+#define P1_E_GPI5_MSK			BIT(5)
 
-#define P1_E_ADC_TEMP_MSK	BIT(0)
-#define P1_E_ADC_EOC_MSK	BIT(1)
-#define P1_E_ADC_EOS_MSK	BIT(2)
-#define P1_E_WDT_TO_MSK	BIT(3)
-#define P1_E_ALARM_MSK	BIT(4)
-#define P1_E_TICK_MSK	BIT(5)
+#define P1_E_ADC_TEMP_MSK		BIT(0)
+#define P1_E_ADC_EOC_MSK		BIT(1)
+#define P1_E_ADC_EOS_MSK		BIT(2)
+#define P1_E_WDT_TO_MSK			BIT(3)
+#define P1_E_ALARM_MSK			BIT(4)
+#define P1_E_TICK_MSK			BIT(5)
 
-#define P1_E_LDO_OV_MSK	BIT(0)
-#define P1_E_LDO_UV_MSK	BIT(1)
-#define P1_E_LDO_SC_MSK	BIT(2)
-#define P1_E_SW_SC_MSK	BIT(3)
-#define P1_E_TEMP_WARN_MSK	BIT(4)
-#define P1_E_TEMP_SEVERE_MSK	BIT(5)
+#define P1_E_LDO_OV_MSK			BIT(0)
+#define P1_E_LDO_UV_MSK			BIT(1)
+#define P1_E_LDO_SC_MSK			BIT(2)
+#define P1_E_SW_SC_MSK			BIT(3)
+#define P1_E_TEMP_WARN_MSK		BIT(4)
+#define P1_E_TEMP_SEVERE_MSK		BIT(5)
 #define P1_E_TEMP_CRIT_MSK		BIT(6)
 
-#define P1_E_BUCK1_OV_MSK	BIT(0)
-#define P1_E_BUCK2_OV_MSK	BIT(1)
-#define P1_E_BUCK3_OV_MSK	BIT(2)
-#define P1_E_BUCK4_OV_MSK	BIT(3)
-#define P1_E_BUCK5_OV_MSK	BIT(4)
-#define P1_E_BUCK6_OV_MSK	BIT(5)
+#define P1_E_BUCK1_OV_MSK		BIT(0)
+#define P1_E_BUCK2_OV_MSK		BIT(1)
+#define P1_E_BUCK3_OV_MSK		BIT(2)
+#define P1_E_BUCK4_OV_MSK		BIT(3)
+#define P1_E_BUCK5_OV_MSK		BIT(4)
+#define P1_E_BUCK6_OV_MSK		BIT(5)
 
-#define P1_E_BUCK1_UV_MSK	BIT(0)
-#define P1_E_BUCK2_UV_MSK	BIT(1)
-#define P1_E_BUCK3_UV_MSK	BIT(2)
-#define P1_E_BUCK4_UV_MSK	BIT(3)
-#define P1_E_BUCK5_UV_MSK	BIT(4)
-#define P1_E_BUCK6_UV_MSK	BIT(5)
+#define P1_E_BUCK1_UV_MSK		BIT(0)
+#define P1_E_BUCK2_UV_MSK		BIT(1)
+#define P1_E_BUCK3_UV_MSK		BIT(2)
+#define P1_E_BUCK4_UV_MSK		BIT(3)
+#define P1_E_BUCK5_UV_MSK		BIT(4)
+#define P1_E_BUCK6_UV_MSK		BIT(5)
 
-#define P1_E_BUCK1_SC_MSK	BIT(0)
-#define P1_E_BUCK2_SC_MSK	BIT(1)
-#define P1_E_BUCK3_SC_MSK	BIT(2)
-#define P1_E_BUCK4_SC_MSK	BIT(3)
-#define P1_E_BUCK5_SC_MSK	BIT(4)
-#define P1_E_BUCK6_SC_MSK	BIT(5)
+#define P1_E_BUCK1_SC_MSK		BIT(0)
+#define P1_E_BUCK2_SC_MSK		BIT(1)
+#define P1_E_BUCK3_SC_MSK		BIT(2)
+#define P1_E_BUCK4_SC_MSK		BIT(3)
+#define P1_E_BUCK5_SC_MSK		BIT(4)
+#define P1_E_BUCK6_SC_MSK		BIT(5)
 
-#define P1_E_PWRON_RINTR_MSK	BIT(0)
-#define P1_E_PWRON_FINTR_MSK	BIT(1)
-#define P1_E_PWRON_SINTR_MSK	BIT(2)
-#define P1_E_PWRON_LINTR_MSK	BIT(3)
-#define P1_E_PWRON_SDINTR_MSK	BIT(4)
+#define P1_E_PWRON_RINTR_MSK		BIT(0)
+#define P1_E_PWRON_FINTR_MSK		BIT(1)
+#define P1_E_PWRON_SINTR_MSK		BIT(2)
+#define P1_E_PWRON_LINTR_MSK		BIT(3)
+#define P1_E_PWRON_SDINTR_MSK		BIT(4)
 #define P1_E_VSYS_OV_MSK		BIT(5)
 
-#define P1_E_STATUS_REG_BASE	0x91
+#define P1_E_STATUS_REG_BASE		0x91
 #define P1_E_EN_REG_BASE		0x98
 
 #define P1_REGMAP_CONFIG	\
@@ -204,7 +203,6 @@ enum p1_irq_line {
 		.max_register = P1_MAX_REG,	\
 		.cache_type = REGCACHE_RBTREE,	\
 	}
-
 
 #define P1_IRQS_DESC				\
 static const struct regmap_irq p1_irqs[] = {	\
@@ -424,7 +422,6 @@ static const struct regmap_irq p1_irqs[] = {	\
 	},						\
 }
 
-
 #define P1_IRQ_CHIP_DESC				\
 static const struct regmap_irq_chip p1_irq_chip = {	\
 	.name = "p1",					\
@@ -437,7 +434,6 @@ static const struct regmap_irq_chip p1_irq_chip = {	\
 	.init_ack_masked = true,				\
 }
 
-/* power-key */
 #define P1_POWER_KEY_RESOURCES_DESC			\
 static const struct resource p1_pwrkey_resources[] = {	\
 	DEFINE_RES_IRQ(P1_E_PWRON_RINTR),			\
@@ -446,7 +442,6 @@ static const struct resource p1_pwrkey_resources[] = {	\
 	DEFINE_RES_IRQ(P1_E_PWRON_LINTR),			\
 }
 
-/* rtc desc */
 #define P1_RTC_RESOURCES_DESC				\
 static const struct resource p1_rtc_resources[] = {	\
 	DEFINE_RES_IRQ(P1_E_ALARM),			\

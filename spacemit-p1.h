@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: GPL-2.0-only
-/*
+/* SPDX-License-Identifier: GPL-2.0-only
+ *
  * Copyright (C) 2024 Troy Mitchell <troymitchell988@gmail.com>
  */
 #ifndef __SPACEMIT_P1_H__
@@ -203,7 +203,7 @@ enum p1_irq_line {
 		.val_bits = 8,	\
 		.max_register = P1_MAX_REG,	\
 		.cache_type = REGCACHE_RBTREE,	\
-	};
+	}
 
 
 #define P1_IRQS_DESC				\
@@ -422,7 +422,7 @@ static const struct regmap_irq p1_irqs[] = {	\
 		.mask = P1_E_VSYS_OV_MSK,		\
 		.reg_offset = 6,			\
 	},						\
-};
+}
 
 
 #define P1_IRQ_CHIP_DESC				\
@@ -435,7 +435,7 @@ static const struct regmap_irq_chip p1_irq_chip = {	\
 	.mask_base = P1_E_EN_REG_BASE,			\
 	.ack_base = P1_E_STATUS_REG_BASE,			\
 	.init_ack_masked = true,				\
-};
+}
 
 /* power-key */
 #define P1_POWER_KEY_RESOURCES_DESC			\
@@ -444,13 +444,13 @@ static const struct resource p1_pwrkey_resources[] = {	\
 	DEFINE_RES_IRQ(P1_E_PWRON_FINTR),			\
 	DEFINE_RES_IRQ(P1_E_PWRON_SINTR),			\
 	DEFINE_RES_IRQ(P1_E_PWRON_LINTR),			\
-};
+}
 
 /* rtc desc */
 #define P1_RTC_RESOURCES_DESC				\
 static const struct resource p1_rtc_resources[] = {	\
 	DEFINE_RES_IRQ(P1_E_ALARM),			\
-};
+}
 
 #define P1_MFD_CELL	\
 	static const struct mfd_cell p1[] = {				\
@@ -458,7 +458,7 @@ static const struct resource p1_rtc_resources[] = {	\
 			.name = "spacemit-regulator@p1",			\
 			.of_compatible = "pmic,regulator,p1",		\
 		},								\
-		{ 								\
+		{								\
 			.name = "spacemit-pinctrl@p1",			\
 			.of_compatible = "pmic,pinctrl,p1",		\
 		},								\
@@ -474,7 +474,7 @@ static const struct resource p1_rtc_resources[] = {	\
 			.num_resources = ARRAY_SIZE(p1_rtc_resources),	\
 			.resources = &p1_rtc_resources[0],			\
 		},								\
-	};
+	}
 
 #define P1_MFD_MATCH_DATA					\
 static struct spacemit_pmic_match_data pmic_p1_match_data = {		\
@@ -491,6 +491,6 @@ static struct spacemit_pmic_match_data pmic_p1_match_data = {		\
 		.reg = P1_PWR_CTRL2,			\
 		.bit = P1_SW_RESET_BIT_MSK,		\
 	},							\
-};
+}
 
 #endif // __SPACEMIT_P1_H__

@@ -62,30 +62,32 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 	struct spacemit_pmic_match_data *match_data;
 	struct spacemit_pmic *pmic;
 	const struct mfd_cell *cells;
-	
-	match_data = (struct spacemit_pmic_match_data*)of_device_get_match_data(&client->dev);
+
+	match_data = (struct spacemit_pmic_match_data *)of_device_get_match_data(&client->dev);
 	if (WARN_ON(!match_data))
 		return -EINVAL;
-	
+
 	pmic = devm_kzalloc(&client->dev, sizeof(*pmic), GFP_KERNEL);
 	if (!pmic)
 		return -ENOMEM;
-	
+
 	cells = match_data->mfd_cells;
 	nr_cells = match_data->nr_cells;
-	
+
 	pmic->regmap_cfg = match_data->regmap_cfg;
 	pmic->regmap_irq_chip = match_data->regmap_irq_chip;
 	pmic->i2c = client;
 	pmic->match_data = match_data;
 	pmic->regmap = devm_regmap_init_i2c(client, pmic->regmap_cfg);
 	if (IS_ERR(pmic->regmap))
-		return dev_err_probe(&client->dev, PTR_ERR(pmic->regmap), "regmap initialization failed");
+		return dev_err_probe(&client->dev,
+				     PTR_ERR(pmic->regmap),
+				     "regmap initialization failed");
 
 	regcache_cache_bypass(pmic->regmap, true);
 
 	i2c_set_clientdata(client, pmic);
-	
+
 	if (!client->irq) {
 		dev_warn(&client->dev, "no interrupt supported");
 	} else {
@@ -105,7 +107,7 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 			      regmap_irq_get_domain(pmic->irq_data));
 	if (ret)
 		return dev_err_probe(&client->dev, ret, "failed to add MFD devices");
-	
+
 	if (match_data->shutdown.reg) {
 		ret = devm_register_sys_off_handler(&client->dev,
 						   SYS_OFF_MODE_POWER_OFF_PREPARE,
@@ -113,10 +115,12 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 					       &spacemit_pmic_shutdown,
 						pmic);
 		if (ret)
-			return dev_err_probe(&client->dev, ret, "failed to register restart handler");
+			return dev_err_probe(&client->dev,
+					     ret,
+					     "failed to register restart handler");
 
 	}
-	
+
 	if (match_data->reboot.reg) {
 		ret = devm_register_sys_off_handler(&client->dev,
 						   SYS_OFF_MODE_RESTART,
@@ -124,14 +128,16 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 					       &spacemit_pmic_restart,
 						pmic);
 		if (ret)
-			return dev_err_probe(&client->dev, ret, "failed to register restart handler");
+			return dev_err_probe(&client->dev,
+					     ret,
+					     "failed to register restart handler");
 	}
 
 	return 0;
 }
 
 static const struct of_device_id spacemit_p1_of_match[] = {
-	{ .compatible = "spacemit,p1" , .data = &pmic_p1_match_data},
+	{ .compatible = "spacemit,p1", .data = &pmic_p1_match_data },
 	{ },
 };
 MODULE_DEVICE_TABLE(of, spacemit_p1_of_match);

@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+ * Copyright (C) 2024 Troy Mitchell <troymitchell988@gmail.com>
+ */
 #ifndef __SPACEMIT_P1_H__
 #define __SPACEMIT_P1_H__
 

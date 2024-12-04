@@ -8,6 +8,7 @@
 #include <linux/module.h>
 #include <linux/i2c.h>
 #include <linux/of_device.h>
+#include <linux/reboot.h>
 #include <linux/pm_wakeirq.h>
 #include <linux/mfd/spacemit/spacemit-pmic.h>
 
@@ -19,12 +20,47 @@ P1_RTC_RESOURCES_DESC;
 P1_MFD_CELL;
 P1_MFD_MATCH_DATA;
 
-static struct spacemit_pmic *pmic;
+static int spacemit_pmic_shutdown(struct sys_off_data *data)
+{
+	int ret;
+	struct spacemit_pmic *pmic = data->cb_data;
+
+	ret = regmap_update_bits(pmic->regmap,
+				 pmic->match_data->shutdown.reg,
+				pmic->match_data->shutdown.bit,
+				 pmic->match_data->shutdown.bit);
+	if (ret)
+		dev_err(data->dev, "failed to reboot device!");
+
+	while (1)
+		asm volatile ("wfi");
+
+	return NOTIFY_DONE;
+}
+
+static int spacemit_pmic_restart(struct sys_off_data *data)
+{
+	int ret;
+	struct spacemit_pmic *pmic = data->cb_data;
+
+	ret = regmap_update_bits(pmic->regmap,
+				 pmic->match_data->reboot.reg,
+				pmic->match_data->reboot.bit,
+				 pmic->match_data->reboot.bit);
+	if (ret)
+		dev_err(data->dev, "failed to reboot device!");
+
+	while (1)
+		asm volatile ("wfi");
+
+	return NOTIFY_DONE;
+}
 
 static int spacemit_pmic_probe(struct i2c_client *client)
 {
 	int nr_cells, ret;
 	struct spacemit_pmic_match_data *match_data;
+	struct spacemit_pmic *pmic;
 	const struct mfd_cell *cells;
 	
 	match_data = (struct spacemit_pmic_match_data*)of_device_get_match_data(&client->dev);
@@ -41,6 +77,7 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 	pmic->regmap_cfg = match_data->regmap_cfg;
 	pmic->regmap_irq_chip = match_data->regmap_irq_chip;
 	pmic->i2c = client;
+	pmic->match_data = match_data;
 	pmic->regmap = devm_regmap_init_i2c(client, pmic->regmap_cfg);
 	if (IS_ERR(pmic->regmap))
 		return dev_err_probe(&client->dev, PTR_ERR(pmic->regmap), "regmap initialization failed");
@@ -50,13 +87,13 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 	i2c_set_clientdata(client, pmic);
 	
 	if (!client->irq) {
-		dev_warn(&client->dev, "No interrupt supported");
+		dev_warn(&client->dev, "no interrupt supported");
 	} else {
 		if (pmic->regmap_irq_chip) {
 			ret = regmap_add_irq_chip(pmic->regmap, client->irq, IRQF_ONESHOT, -1,
 						  pmic->regmap_irq_chip, &pmic->irq_data);
 			if (ret)
-				return dev_err_probe(&client->dev, ret, "failed to add irqchip %d", ret);
+				return dev_err_probe(&client->dev, ret, "failed to add irqchip");
 		}
 
 		dev_pm_set_wake_irq(&client->dev, client->irq);
@@ -67,7 +104,28 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 			      cells, nr_cells, NULL, 0,
 			      regmap_irq_get_domain(pmic->irq_data));
 	if (ret)
-		return dev_err_probe(&client->dev, ret, "failed to add MFD devices %d", ret);
+		return dev_err_probe(&client->dev, ret, "failed to add MFD devices");
+	
+	if (match_data->shutdown.reg) {
+		ret = devm_register_sys_off_handler(&client->dev,
+						   SYS_OFF_MODE_POWER_OFF_PREPARE,
+					       SYS_OFF_PRIO_HIGH,
+					       &spacemit_pmic_shutdown,
+						pmic);
+		if (ret)
+			return dev_err_probe(&client->dev, ret, "failed to register restart handler");
+
+	}
+	
+	if (match_data->reboot.reg) {
+		ret = devm_register_sys_off_handler(&client->dev,
+						   SYS_OFF_MODE_RESTART,
+					       SYS_OFF_PRIO_HIGH,
+					       &spacemit_pmic_restart,
+						pmic);
+		if (ret)
+			return dev_err_probe(&client->dev, ret, "failed to register restart handler");
+	}
 
 	return 0;
 }

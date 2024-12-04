@@ -3,14 +3,13 @@
  * Copyright (C) 2024 Troy Mitchell <troymitchell988@gmail.com>
  */
 
-#include "linux/mfd/spacemit/spacemit-p1.h"
-#include <linux/mfd/core.h>
-#include <linux/module.h>
 #include <linux/i2c.h>
-#include <linux/of_device.h>
-#include <linux/reboot.h>
-#include <linux/pm_wakeirq.h>
+#include <linux/mfd/core.h>
 #include <linux/mfd/spacemit/spacemit-pmic.h>
+#include <linux/module.h>
+#include <linux/of_device.h>
+#include <linux/pm_wakeirq.h>
+#include <linux/reboot.h>
 
 P1_REGMAP_CONFIG;
 P1_IRQS_DESC;
@@ -27,7 +26,7 @@ static int spacemit_pmic_shutdown(struct sys_off_data *data)
 
 	ret = regmap_update_bits(pmic->regmap,
 				 pmic->match_data->shutdown.reg,
-				pmic->match_data->shutdown.bit,
+				 pmic->match_data->shutdown.bit,
 				 pmic->match_data->shutdown.bit);
 	if (ret)
 		dev_err(data->dev, "failed to reboot device!");
@@ -45,7 +44,7 @@ static int spacemit_pmic_restart(struct sys_off_data *data)
 
 	ret = regmap_update_bits(pmic->regmap,
 				 pmic->match_data->reboot.reg,
-				pmic->match_data->reboot.bit,
+				 pmic->match_data->reboot.bit,
 				 pmic->match_data->reboot.bit);
 	if (ret)
 		dev_err(data->dev, "failed to reboot device!");
@@ -103,17 +102,17 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 	}
 
 	ret = devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_NONE,
-			      cells, nr_cells, NULL, 0,
-			      regmap_irq_get_domain(pmic->irq_data));
+				   cells, nr_cells, NULL, 0,
+				   regmap_irq_get_domain(pmic->irq_data));
 	if (ret)
 		return dev_err_probe(&client->dev, ret, "failed to add MFD devices");
 
 	if (match_data->shutdown.reg) {
 		ret = devm_register_sys_off_handler(&client->dev,
-						   SYS_OFF_MODE_POWER_OFF_PREPARE,
-					       SYS_OFF_PRIO_HIGH,
-					       &spacemit_pmic_shutdown,
-						pmic);
+						    SYS_OFF_MODE_POWER_OFF_PREPARE,
+						    SYS_OFF_PRIO_HIGH,
+						    &spacemit_pmic_shutdown,
+						    pmic);
 		if (ret)
 			return dev_err_probe(&client->dev,
 					     ret,
@@ -123,10 +122,10 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 
 	if (match_data->reboot.reg) {
 		ret = devm_register_sys_off_handler(&client->dev,
-						   SYS_OFF_MODE_RESTART,
-					       SYS_OFF_PRIO_HIGH,
-					       &spacemit_pmic_restart,
-						pmic);
+						    SYS_OFF_MODE_RESTART,
+						    SYS_OFF_PRIO_HIGH,
+						    &spacemit_pmic_restart,
+						    pmic);
 		if (ret)
 			return dev_err_probe(&client->dev,
 					     ret,

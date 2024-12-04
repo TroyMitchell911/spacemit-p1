@@ -22,7 +22,7 @@ properties:
 
   interrupts:
     maxItems: 1
-  
+
   regulators:
     properties:
       compatible:
@@ -58,7 +58,7 @@ properties:
   pwrkey:
     type: object
     $ref: /schemas/input/input.yaml#
-    
+
     properties:
       compatible:
         const: pmic,pwrkey,p1

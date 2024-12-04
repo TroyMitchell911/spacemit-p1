@@ -54,7 +54,7 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 	} else {
 		if (pmic->regmap_irq_chip) {
 			ret = regmap_add_irq_chip(pmic->regmap, client->irq, IRQF_ONESHOT, -1,
-				pmic->regmap_irq_chip, &pmic->irq_data);
+						  pmic->regmap_irq_chip, &pmic->irq_data);
 			if (ret)
 				return dev_err_probe(&client->dev, ret, "failed to add irqchip %d", ret);
 		}
@@ -69,7 +69,6 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 	if (ret)
 		return dev_err_probe(&client->dev, ret, "failed to add MFD devices %d", ret);
 
-	dev_err(&client->dev, "mfd probe ok");
 	return 0;
 }
 

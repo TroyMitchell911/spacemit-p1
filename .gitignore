@@ -1,1 +1,7 @@
 /.cache
+/.*
+/*.mod*
+/*.o*
+/*json
+/*.ko
+/Module.symvers

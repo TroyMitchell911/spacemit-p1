@@ -150,4 +150,4 @@ static int spacemit_mfd_init(void)
 subsys_initcall(spacemit_mfd_init);
 
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("driver for the SpacemiT P1 PMIC chip");
+MODULE_DESCRIPTION("mfd core driver for the SpacemiT PMIC");

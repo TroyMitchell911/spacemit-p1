@@ -33,7 +33,7 @@ struct spacemit_pmic {
 	struct regmap			*regmap;
 	const struct regmap_config	*regmap_cfg;
 	const struct regmap_irq_chip	*regmap_irq_chip;
-	struct spacemit_pmic_match_data *match_data;
+	const struct spacemit_pmic_match_data *match_data;
 };
 
 #endif // __SPACEMIT_PMIC_H__

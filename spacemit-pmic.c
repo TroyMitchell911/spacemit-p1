@@ -31,9 +31,6 @@ static int spacemit_pmic_shutdown(struct sys_off_data *data)
 	if (ret)
 		dev_err(data->dev, "failed to reboot device!");
 
-	while (1)
-		asm volatile ("wfi");
-
 	return NOTIFY_DONE;
 }
 
@@ -49,20 +46,17 @@ static int spacemit_pmic_restart(struct sys_off_data *data)
 	if (ret)
 		dev_err(data->dev, "failed to reboot device!");
 
-	while (1)
-		asm volatile ("wfi");
-
 	return NOTIFY_DONE;
 }
 
 static int spacemit_pmic_probe(struct i2c_client *client)
 {
-	int nr_cells, ret;
-	struct spacemit_pmic_match_data *match_data;
-	struct spacemit_pmic *pmic;
+	const struct spacemit_pmic_match_data *match_data;
 	const struct mfd_cell *cells;
+	struct spacemit_pmic *pmic;
+	int nr_cells, ret;
 
-	match_data = (struct spacemit_pmic_match_data *)of_device_get_match_data(&client->dev);
+	match_data = of_device_get_match_data(&client->dev);
 	if (WARN_ON(!match_data))
 		return -EINVAL;
 

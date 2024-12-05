@@ -31,7 +31,7 @@ properties:
     type: object
     unevaluatedProperties: false
     patternProperties:
-      "^(DCDC_REG[1-6]|ALDO_REG[1-4]|DLDO_REG[1-7]|SWITCH_REG1)$":
+      "^(dcdc-reg[1-6]|aldo-reg[1-4]|dldo-reg[1-7]|switch)$":
         type: object
         $ref: /schemas/regulator/regulator.yaml#
         unevaluatedProperties: false
@@ -105,126 +105,126 @@ examples:
             regulators {
                 compatible = "pmic,regulator,p1";
 
-                DCDC_REG1 {
-                        regulator-name = "dcdc1";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3450000>;
-                        regulator-ramp-delay = <5000>;
-                        regulator-always-on;
+                dcdc-reg1 {
+                    regulator-name = "dcdc1";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3450000>;
+                    regulator-ramp-delay = <5000>;
+                    regulator-always-on;
                 };
 
-                DCDC_REG2 {
-                        regulator-name = "dcdc2";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3450000>;
-                        regulator-ramp-delay = <5000>;
-                        regulator-always-on;
+                dcdc-reg2 {
+                    regulator-name = "dcdc2";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3450000>;
+                    regulator-ramp-delay = <5000>;
+                    regulator-always-on;
                 };
 
-                DCDC_REG3 {
-                        regulator-name = "dcdc3";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <1800000>;
-                        regulator-ramp-delay = <5000>;
-                        regulator-always-on;
+                dcdc-reg3 {
+                    regulator-name = "dcdc3";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <1800000>;
+                    regulator-ramp-delay = <5000>;
+                    regulator-always-on;
                 };
 
-                DCDC_REG4 {
-                        regulator-name = "dcdc4";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3300000>;
-                        regulator-ramp-delay = <5000>;
-                        regulator-always-on;
+                dcdc-reg4 {
+                    regulator-name = "dcdc4";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3300000>;
+                    regulator-ramp-delay = <5000>;
+                    regulator-always-on;
                 };
 
-                DCDC_REG5 {
-                        regulator-name = "dcdc5";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3450000>;
-                        regulator-ramp-delay = <5000>;
-                        regulator-always-on;
+                dcdc-reg5 {
+                    regulator-name = "dcdc5";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3450000>;
+                    regulator-ramp-delay = <5000>;
+                    regulator-always-on;
                 };
 
-                DCDC_REG6 {
-                        regulator-name = "dcdc6";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3450000>;
-                        regulator-ramp-delay = <5000>;
-                        regulator-always-on;
+                dcdc-reg6 {
+                    regulator-name = "dcdc6";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3450000>;
+                    regulator-ramp-delay = <5000>;
+                    regulator-always-on;
                 };
 
-                ALDO_REG1 {
-                        regulator-name = "aldo1";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3400000>;
-                        regulator-boot-on;
+                aldo-reg1 {
+                    regulator-name = "aldo1";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3400000>;
+                    regulator-boot-on;
                 };
 
-                ALDO_REG2 {
-                        regulator-name = "aldo2";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3400000>;
+                aldo-reg2 {
+                    regulator-name = "aldo2";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3400000>;
                 };
 
-                ALDO_REG3 {
-                        regulator-name = "aldo3";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3400000>;
+                aldo-reg3 {
+                    regulator-name = "aldo3";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3400000>;
                 };
 
-                ALDO_REG4 {
-                        regulator-name = "aldo4";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3400000>;
+                aldo-reg4 {
+                    regulator-name = "aldo4";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3400000>;
                 };
 
-                DLDO_REG1 {
-                        regulator-name = "dldo1";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3400000>;
-                        regulator-boot-on;
+                dldo-reg1 {
+                    regulator-name = "dldo1";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3400000>;
+                    regulator-boot-on;
                 };
 
-                DLDO_REG2 {
-                        regulator-name = "dldo2";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3400000>;
+                dldo-reg2 {
+                    regulator-name = "dldo2";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3400000>;
                 };
 
-                DLDO_REG3 {
-                        regulator-name = "dldo3";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3400000>;
+                dldo-reg3 {
+                    regulator-name = "dldo3";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3400000>;
                 };
 
-                DLDO_REG4 {
-                        regulator-name = "dldo4";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3400000>;
-                        regulator-always-on;
+                dldo-reg4 {
+                    regulator-name = "dldo4";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3400000>;
+                    regulator-always-on;
                 };
 
-                DLDO_REG5 {
-                        regulator-name = "dldo5";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3400000>;
+                dldo-reg5 {
+                    regulator-name = "dldo5";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3400000>;
                 };
 
-                DLDO_REG6 {
-                        regulator-name = "dldo6";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3400000>;
-                        regulator-always-on;
+                dldo-reg6 {
+                    regulator-name = "dldo6";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3400000>;
+                    regulator-always-on;
                 };
 
-                DLDO_REG7 {
-                        regulator-name = "dldo7";
-                        regulator-min-microvolt = <500000>;
-                        regulator-max-microvolt = <3400000>;
+                dldo-reg7 {
+                    regulator-name = "dldo7";
+                    regulator-min-microvolt = <500000>;
+                    regulator-max-microvolt = <3400000>;
                 };
 
-                SWITCH_REG1 {
-                        regulator-name = "switch1";
+                switch {
+                    regulator-name = "switch";
                 };
             };
 

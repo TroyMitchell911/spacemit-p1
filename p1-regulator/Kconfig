@@ -1,0 +1,7 @@
+config REGULATOR_SPACEMIT
+	tristate "Spacemit regulator support"
+	depends on MFD_SPACEMIT_PMIC
+	select REGULATOR_FIXED_VOLTAGE
+	help
+	  This driver provides support for the voltage regulators on the
+	  spacemit pmic.

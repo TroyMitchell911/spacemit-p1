@@ -198,45 +198,45 @@ enum p1_irq_line {
 
 #define P1_REGMAP_CONFIG	\
 	static const struct regmap_config p1_regmap_config = {	\
-		.reg_bits = 8,	\
-		.val_bits = 8,	\
-		.max_register = P1_MAX_REG,	\
-		.cache_type = REGCACHE_RBTREE,	\
+		.reg_bits = 8,					\
+		.val_bits = 8,					\
+		.max_register = P1_MAX_REG,			\
+		.cache_type = REGCACHE_RBTREE,			\
 	}
 
-#define P1_IRQS_DESC				\
-static const struct regmap_irq p1_irqs[] = {	\
-	[P1_E_GPI0] = {				\
-		.mask = P1_E_GPI0_MSK,		\
+#define P1_IRQS_DESC					\
+static const struct regmap_irq p1_irqs[] = {		\
+	[P1_E_GPI0] = {					\
+		.mask = P1_E_GPI0_MSK,			\
 		.reg_offset = 0,			\
 	},						\
 							\
-	[P1_E_GPI1] = {				\
-		.mask = P1_E_GPI1_MSK,		\
+	[P1_E_GPI1] = {					\
+		.mask = P1_E_GPI1_MSK,			\
 		.reg_offset = 0,			\
 	},						\
 							\
-	[P1_E_GPI2] = {				\
-		.mask = P1_E_GPI2_MSK,		\
+	[P1_E_GPI2] = {					\
+		.mask = P1_E_GPI2_MSK,			\
 		.reg_offset = 0,			\
 	},						\
 							\
-	[P1_E_GPI3] = {				\
-		.mask = P1_E_GPI3_MSK,		\
+	[P1_E_GPI3] = {					\
+		.mask = P1_E_GPI3_MSK,			\
 		.reg_offset = 0,			\
 	},						\
 							\
-	[P1_E_GPI4] = {				\
-		.mask = P1_E_GPI4_MSK,		\
+	[P1_E_GPI4] = {					\
+		.mask = P1_E_GPI4_MSK,			\
 		.reg_offset = 0,			\
 	},						\
 							\
-	[P1_E_GPI5] = {				\
-		.mask = P1_E_GPI5_MSK,		\
+	[P1_E_GPI5] = {					\
+		.mask = P1_E_GPI5_MSK,			\
 		.reg_offset = 0,			\
 	},						\
 							\
-	[P1_E_ADC_TEMP] = {			\
+	[P1_E_ADC_TEMP] = {				\
 		.mask = P1_E_ADC_TEMP_MSK,		\
 		.reg_offset = 1,			\
 	},						\
@@ -257,12 +257,12 @@ static const struct regmap_irq p1_irqs[] = {	\
 	},						\
 							\
 	[P1_E_ALARM] = {				\
-		.mask = P1_E_ALARM_MSK,		\
+		.mask = P1_E_ALARM_MSK,			\
 		.reg_offset = 1,			\
 	},						\
 							\
-	[P1_E_TICK] = {				\
-		.mask = P1_E_TICK_MSK,		\
+	[P1_E_TICK] = {					\
+		.mask = P1_E_TICK_MSK,			\
 		.reg_offset = 1,			\
 	},						\
 							\
@@ -282,137 +282,137 @@ static const struct regmap_irq p1_irqs[] = {	\
 	},						\
 							\
 	[P1_E_SW_SC] = {				\
-		.mask = P1_E_SW_SC_MSK,		\
+		.mask = P1_E_SW_SC_MSK,			\
 		.reg_offset = 2,			\
 	},						\
 							\
-	[P1_E_TEMP_WARN] = {			\
-		.mask = P1_E_TEMP_WARN_MSK,	\
+	[P1_E_TEMP_WARN] = {				\
+		.mask = P1_E_TEMP_WARN_MSK,		\
 		.reg_offset = 2,			\
 	},						\
 							\
-	[P1_E_TEMP_SEVERE] = {			\
-		.mask = P1_E_TEMP_SEVERE_MSK,	\
+	[P1_E_TEMP_SEVERE] = {				\
+		.mask = P1_E_TEMP_SEVERE_MSK,		\
 		.reg_offset = 2,			\
 	},						\
 							\
-	[P1_E_TEMP_CRIT] = {			\
-		.mask = P1_E_TEMP_CRIT_MSK,	\
+	[P1_E_TEMP_CRIT] = {				\
+		.mask = P1_E_TEMP_CRIT_MSK,		\
 		.reg_offset = 2,			\
 	},						\
 							\
-	[P1_E_BUCK1_OV] = {			\
+	[P1_E_BUCK1_OV] = {				\
 		.mask = P1_E_BUCK1_OV_MSK,		\
 		.reg_offset = 3,			\
 	},						\
 							\
-	[P1_E_BUCK2_OV] = {			\
+	[P1_E_BUCK2_OV] = {				\
 		.mask = P1_E_BUCK2_OV_MSK,		\
 		.reg_offset = 3,			\
 	},						\
 							\
-	[P1_E_BUCK3_OV] = {			\
+	[P1_E_BUCK3_OV] = {				\
 		.mask = P1_E_BUCK3_OV_MSK,		\
 		.reg_offset = 3,			\
 	},						\
 							\
-	[P1_E_BUCK4_OV] = {			\
+	[P1_E_BUCK4_OV] = {				\
 		.mask = P1_E_BUCK4_OV_MSK,		\
 		.reg_offset = 3,			\
 	},						\
 							\
-	[P1_E_BUCK5_OV] = {			\
+	[P1_E_BUCK5_OV] = {				\
 		.mask = P1_E_BUCK5_OV_MSK,		\
 		.reg_offset = 3,			\
 	},						\
 							\
-	[P1_E_BUCK6_OV] = {			\
+	[P1_E_BUCK6_OV] = {				\
 		.mask = P1_E_BUCK6_OV_MSK,		\
 		.reg_offset = 3,			\
 	},						\
 							\
-	[P1_E_BUCK1_UV] = {			\
+	[P1_E_BUCK1_UV] = {				\
 		.mask = P1_E_BUCK1_UV_MSK,		\
 		.reg_offset = 4,			\
 	},						\
 							\
-	[P1_E_BUCK2_UV] = {			\
+	[P1_E_BUCK2_UV] = {				\
 		.mask = P1_E_BUCK2_UV_MSK,		\
 		.reg_offset = 4,			\
 	},						\
 							\
-	[P1_E_BUCK3_UV] = {			\
+	[P1_E_BUCK3_UV] = {				\
 		.mask = P1_E_BUCK3_UV_MSK,		\
 		.reg_offset = 4,			\
 	},						\
 							\
-	[P1_E_BUCK4_UV] = {			\
+	[P1_E_BUCK4_UV] = {				\
 		.mask = P1_E_BUCK4_UV_MSK,		\
 		.reg_offset = 4,			\
 	},						\
 							\
-	[P1_E_BUCK5_UV] = {			\
+	[P1_E_BUCK5_UV] = {				\
 		.mask = P1_E_BUCK5_UV_MSK,		\
 		.reg_offset = 4,			\
 	},						\
 							\
-	[P1_E_BUCK6_UV] = {			\
+	[P1_E_BUCK6_UV] = {				\
 		.mask = P1_E_BUCK6_UV_MSK,		\
 		.reg_offset = 4,			\
 	},						\
 							\
-	[P1_E_BUCK1_SC] = {			\
+	[P1_E_BUCK1_SC] = {				\
 		.mask = P1_E_BUCK1_SC_MSK,		\
 		.reg_offset = 5,			\
 	},						\
 							\
-	[P1_E_BUCK2_SC] = {			\
+	[P1_E_BUCK2_SC] = {				\
 		.mask = P1_E_BUCK2_SC_MSK,		\
 		.reg_offset = 5,			\
 	},						\
 							\
-	[P1_E_BUCK3_SC] = {			\
+	[P1_E_BUCK3_SC] = {				\
 		.mask = P1_E_BUCK3_SC_MSK,		\
 		.reg_offset = 5,			\
 	},						\
 							\
-	[P1_E_BUCK4_SC] = {			\
+	[P1_E_BUCK4_SC] = {				\
 		.mask = P1_E_BUCK4_SC_MSK,		\
 		.reg_offset = 5,			\
 	},						\
 							\
-	[P1_E_BUCK5_SC] = {			\
+	[P1_E_BUCK5_SC] = {				\
 		.mask = P1_E_BUCK5_SC_MSK,		\
 		.reg_offset = 5,			\
 	},						\
 							\
-	[P1_E_BUCK6_SC] = {			\
+	[P1_E_BUCK6_SC] = {				\
 		.mask = P1_E_BUCK6_SC_MSK,		\
 		.reg_offset = 5,			\
 	},						\
 							\
-	[P1_E_PWRON_RINTR] = {			\
-		.mask = P1_E_PWRON_RINTR_MSK,	\
+	[P1_E_PWRON_RINTR] = {				\
+		.mask = P1_E_PWRON_RINTR_MSK,		\
 		.reg_offset = 6,			\
 	},						\
 							\
-	[P1_E_PWRON_FINTR] = {			\
-		.mask = P1_E_PWRON_FINTR_MSK,	\
+	[P1_E_PWRON_FINTR] = {				\
+		.mask = P1_E_PWRON_FINTR_MSK,		\
 		.reg_offset = 6,			\
 	},						\
 							\
-	[P1_E_PWRON_SINTR] = {			\
-		.mask = P1_E_PWRON_SINTR_MSK,	\
+	[P1_E_PWRON_SINTR] = {				\
+		.mask = P1_E_PWRON_SINTR_MSK,		\
 		.reg_offset = 6,			\
 	},						\
 							\
-	[P1_E_PWRON_LINTR] = {			\
-		.mask = P1_E_PWRON_LINTR_MSK,	\
+	[P1_E_PWRON_LINTR] = {				\
+		.mask = P1_E_PWRON_LINTR_MSK,		\
 		.reg_offset = 6,			\
 	},						\
 							\
-	[P1_E_PWRON_SDINTR] = {			\
-		.mask = P1_E_PWRON_SDINTR_MSK,	\
+	[P1_E_PWRON_SDINTR] = {				\
+		.mask = P1_E_PWRON_SDINTR_MSK,		\
 		.reg_offset = 6,			\
 	},						\
 							\
@@ -424,22 +424,22 @@ static const struct regmap_irq p1_irqs[] = {	\
 
 #define P1_IRQ_CHIP_DESC				\
 static const struct regmap_irq_chip p1_irq_chip = {	\
-	.name = "p1",					\
-	.irqs = p1_irqs,					\
-	.num_irqs = ARRAY_SIZE(p1_irqs),			\
-	.num_regs = 7,						\
-	.status_base = P1_E_STATUS_REG_BASE,		\
-	.mask_base = P1_E_EN_REG_BASE,			\
-	.ack_base = P1_E_STATUS_REG_BASE,			\
-	.init_ack_masked = true,				\
+	.name			= "p1",			\
+	.irqs			= p1_irqs,		\
+	.num_irqs		= ARRAY_SIZE(p1_irqs),	\
+	.num_regs		= 7,			\
+	.status_base		= P1_E_STATUS_REG_BASE,	\
+	.mask_base		= P1_E_EN_REG_BASE,	\
+	.ack_base		= P1_E_STATUS_REG_BASE,	\
+	.init_ack_masked	= true,			\
 }
 
 #define P1_POWER_KEY_RESOURCES_DESC			\
 static const struct resource p1_pwrkey_resources[] = {	\
-	DEFINE_RES_IRQ(P1_E_PWRON_RINTR),			\
-	DEFINE_RES_IRQ(P1_E_PWRON_FINTR),			\
-	DEFINE_RES_IRQ(P1_E_PWRON_SINTR),			\
-	DEFINE_RES_IRQ(P1_E_PWRON_LINTR),			\
+	DEFINE_RES_IRQ(P1_E_PWRON_RINTR),		\
+	DEFINE_RES_IRQ(P1_E_PWRON_FINTR),		\
+	DEFINE_RES_IRQ(P1_E_PWRON_SINTR),		\
+	DEFINE_RES_IRQ(P1_E_PWRON_LINTR),		\
 }
 
 #define P1_RTC_RESOURCES_DESC				\
@@ -448,44 +448,44 @@ static const struct resource p1_rtc_resources[] = {	\
 }
 
 #define P1_MFD_CELL	\
-	static const struct mfd_cell p1[] = {				\
+	static const struct mfd_cell p1[] = {					\
 		{								\
 			.name = "spacemit-regulator@p1",			\
-			.of_compatible = "pmic,regulator,p1",		\
+			.of_compatible = "pmic,regulator,p1",			\
 		},								\
 		{								\
-			.name = "spacemit-pinctrl@p1",			\
-			.of_compatible = "pmic,pinctrl,p1",		\
+			.name = "spacemit-pinctrl@p1",				\
+			.of_compatible = "pmic,pinctrl,p1",			\
 		},								\
 		{								\
-			.name = "spacemit-pwrkey@p1",			\
+			.name = "spacemit-pwrkey@p1",				\
 			.of_compatible = "pmic,pwrkey,p1",			\
 			.num_resources = ARRAY_SIZE(p1_pwrkey_resources),	\
-			.resources = &p1_pwrkey_resources[0],		\
+			.resources = &p1_pwrkey_resources[0],			\
 		},								\
 		{								\
 			.name = "spacemit-rtc@p1",				\
-			.of_compatible = "pmic,rtc,p1",			\
-			.num_resources = ARRAY_SIZE(p1_rtc_resources),	\
+			.of_compatible = "pmic,rtc,p1",				\
+			.num_resources = ARRAY_SIZE(p1_rtc_resources),		\
 			.resources = &p1_rtc_resources[0],			\
 		},								\
 	}
 
-#define P1_MFD_MATCH_DATA					\
-static struct spacemit_pmic_match_data pmic_p1_match_data = {		\
-	.regmap_cfg = &p1_regmap_config,			\
-	.regmap_irq_chip = &p1_irq_chip,			\
-	.mfd_cells = p1,					\
-	.nr_cells = ARRAY_SIZE(p1),			\
-	.name = "p1",					\
-	.shutdown = {						\
-		.reg = P1_PWR_CTRL2,			\
-		.bit = P1_SW_SHUTDOWN_BIT_MSK,		\
-	},							\
-	.reboot = {						\
-		.reg = P1_PWR_CTRL2,			\
-		.bit = P1_SW_RESET_BIT_MSK,		\
-	},							\
+#define P1_MFD_MATCH_DATA							\
+static struct spacemit_pmic_match_data pmic_p1_match_data = {			\
+	.regmap_cfg = &p1_regmap_config,					\
+	.regmap_irq_chip = &p1_irq_chip,					\
+	.mfd_cells = p1,							\
+	.nr_cells = ARRAY_SIZE(p1),						\
+	.name = "p1",								\
+	.shutdown = {								\
+		.reg = P1_PWR_CTRL2,						\
+		.bit = P1_SW_SHUTDOWN_BIT_MSK,					\
+	},									\
+	.reboot = {								\
+		.reg = P1_PWR_CTRL2,						\
+		.bit = P1_SW_RESET_BIT_MSK,					\
+	},									\
 }
 
 #endif // __SPACEMIT_P1_H__

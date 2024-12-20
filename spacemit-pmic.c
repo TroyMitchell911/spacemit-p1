@@ -56,6 +56,9 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 	struct spacemit_pmic *pmic;
 	int nr_cells, ret;
 
+	if (!client->irq)
+		return dev_err_probe(&client->dev, -ENXIO, "no interrupt supported");
+
 	match_data = of_device_get_match_data(&client->dev);
 	if (WARN_ON(!match_data))
 		return -EINVAL;
@@ -81,19 +84,15 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 
 	i2c_set_clientdata(client, pmic);
 
-	if (!client->irq) {
-		dev_warn(&client->dev, "no interrupt supported");
-	} else {
-		if (pmic->regmap_irq_chip) {
-			ret = regmap_add_irq_chip(pmic->regmap, client->irq, IRQF_ONESHOT, -1,
-						  pmic->regmap_irq_chip, &pmic->irq_data);
-			if (ret)
-				return dev_err_probe(&client->dev, ret, "failed to add irqchip");
-		}
-
-		dev_pm_set_wake_irq(&client->dev, client->irq);
-		device_init_wakeup(&client->dev, true);
+	if (pmic->regmap_irq_chip) {
+		ret = regmap_add_irq_chip(pmic->regmap, client->irq, IRQF_ONESHOT, -1,
+						pmic->regmap_irq_chip, &pmic->irq_data);
+		if (ret)
+			return dev_err_probe(&client->dev, ret, "failed to add irqchip");
 	}
+
+	dev_pm_set_wake_irq(&client->dev, client->irq);
+	device_init_wakeup(&client->dev, true);
 
 	ret = devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_NONE,
 				   cells, nr_cells, NULL, 0,
@@ -129,25 +128,32 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 	return 0;
 }
 
-static const struct of_device_id spacemit_p1_of_match[] = {
+static const struct of_device_id spacemit_pmic_of_match[] = {
 	{ .compatible = "spacemit,p1", .data = &pmic_p1_match_data },
 	{ /* sentinel */ }
 };
-MODULE_DEVICE_TABLE(of, spacemit_p1_of_match);
+MODULE_DEVICE_TABLE(of, spacemit_pmic_of_match);
 
-static struct i2c_driver spacemit_p1_i2c_driver = {
+static struct i2c_driver spacemit_pmic_i2c_driver = {
 	.driver = {
 		.name = "spacemit-pmic",
-		.of_match_table = spacemit_p1_of_match,
+		.of_match_table = spacemit_pmic_of_match,
 	},
 	.probe    = spacemit_pmic_probe,
 };
 
-static int spacemit_mfd_init(void)
+static int __init spacemit_pmic_init(void)
 {
-	return i2c_add_driver(&spacemit_p1_i2c_driver);
+    return platform_driver_register(&spacemit_pmic_i2c_driver);
 }
-subsys_initcall(spacemit_mfd_init);
+
+static void __exit spacemit_pmic_exit(void)
+{
+    platform_driver_unregister(&spacemit_pmic_i2c_driver);
+}
+
+module_init( spacemit_pmic_init);
+module_exit( spacemit_pmic_exit);
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("mfd core driver for the SpacemiT PMIC");

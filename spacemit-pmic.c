@@ -131,7 +131,7 @@ static int spacemit_pmic_probe(struct i2c_client *client)
 
 static const struct of_device_id spacemit_p1_of_match[] = {
 	{ .compatible = "spacemit,p1", .data = &pmic_p1_match_data },
-	{ },
+	{ /* sentinel */ }
 };
 MODULE_DEVICE_TABLE(of, spacemit_p1_of_match);
 

@@ -10,12 +10,12 @@ maintainers:
   - Troy Mitchell <troymitchell988@gmail.com>
 
 description:
-  P1 PMIC from SpacemiT. The device consists of i2c controlled MFD,
+  PMIC chip P1 produced by SpacemiT. The device consists of I2C controlled MFD,
   which contains regulator, pinctrl, pwrkey and rtc.
 
 properties:
   compatible:
-    const: spacemit,p1
+    const: spacemit,p1-pmic
 
   reg:
     maxItems: 1
@@ -26,7 +26,7 @@ properties:
   regulators:
     properties:
       compatible:
-        const: pmic,regulator,p1
+        const: pmic,p1-regulator
 
     type: object
     unevaluatedProperties: false
@@ -41,7 +41,7 @@ properties:
 
     properties:
       compatible:
-        const: pmic,pinctrl,p1
+        const: pmic,p1-pinctrl
 
       "#gpio-cells":
         const: 2
@@ -61,7 +61,7 @@ properties:
 
     properties:
       compatible:
-        const: pmic,pwrkey,p1
+        const: pmic,p1-pwrkey
 
     required:
       - compatible
@@ -74,7 +74,7 @@ properties:
 
     properties:
       compatible:
-        const: pmic,rtc,p1
+        const: pmic,p1-rtc
 
     required:
       - compatible
@@ -100,53 +100,12 @@ examples:
             reg = <0x41>;
             interrupt-parent = <&intc>;
             interrupts = <64>;
-            status = "okay";
 
             regulators {
-                compatible = "pmic,regulator,p1";
+                compatible = "pmic,p1-regulator";
 
                 dcdc-reg1 {
                     regulator-name = "dcdc1";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <3450000>;
-                    regulator-ramp-delay = <5000>;
-                    regulator-always-on;
-                };
-
-                dcdc-reg2 {
-                    regulator-name = "dcdc2";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <3450000>;
-                    regulator-ramp-delay = <5000>;
-                    regulator-always-on;
-                };
-
-                dcdc-reg3 {
-                    regulator-name = "dcdc3";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <1800000>;
-                    regulator-ramp-delay = <5000>;
-                    regulator-always-on;
-                };
-
-                dcdc-reg4 {
-                    regulator-name = "dcdc4";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <3300000>;
-                    regulator-ramp-delay = <5000>;
-                    regulator-always-on;
-                };
-
-                dcdc-reg5 {
-                    regulator-name = "dcdc5";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <3450000>;
-                    regulator-ramp-delay = <5000>;
-                    regulator-always-on;
-                };
-
-                dcdc-reg6 {
-                    regulator-name = "dcdc6";
                     regulator-min-microvolt = <500000>;
                     regulator-max-microvolt = <3450000>;
                     regulator-ramp-delay = <5000>;
@@ -160,67 +119,11 @@ examples:
                     regulator-boot-on;
                 };
 
-                aldo-reg2 {
-                    regulator-name = "aldo2";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <3400000>;
-                };
-
-                aldo-reg3 {
-                    regulator-name = "aldo3";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <3400000>;
-                };
-
-                aldo-reg4 {
-                    regulator-name = "aldo4";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <3400000>;
-                };
-
                 dldo-reg1 {
                     regulator-name = "dldo1";
                     regulator-min-microvolt = <500000>;
                     regulator-max-microvolt = <3400000>;
                     regulator-boot-on;
-                };
-
-                dldo-reg2 {
-                    regulator-name = "dldo2";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <3400000>;
-                };
-
-                dldo-reg3 {
-                    regulator-name = "dldo3";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <3400000>;
-                };
-
-                dldo-reg4 {
-                    regulator-name = "dldo4";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <3400000>;
-                    regulator-always-on;
-                };
-
-                dldo-reg5 {
-                    regulator-name = "dldo5";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <3400000>;
-                };
-
-                dldo-reg6 {
-                    regulator-name = "dldo6";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <3400000>;
-                    regulator-always-on;
-                };
-
-                dldo-reg7 {
-                    regulator-name = "dldo7";
-                    regulator-min-microvolt = <500000>;
-                    regulator-max-microvolt = <3400000>;
                 };
 
                 switch {
@@ -229,17 +132,17 @@ examples:
             };
 
             pinctrl {
-                    compatible = "pmic,pinctrl,p1";
+                    compatible = "pmic,p1-pinctrl";
                     gpio-controller;
                     #gpio-cells = <2>;
             };
 
             pwrkey {
-                compatible = "pmic,pwrkey,p1";
+                compatible = "pmic,p1-pwrkey";
             };
 
             rtc {
-                compatible = "pmic,rtc,p1";
+                compatible = "pmic,p1-rtc";
             };
         };
     };
